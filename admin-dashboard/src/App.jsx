@@ -6,6 +6,7 @@ import ViewListings from './pages/ViewListings.jsx';
 import CreateListing from './pages/CreateListing.jsx';
 import UpdateListing from './pages/UpdateListing.jsx';
 import Reservations from './pages/Reservations.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
           <Route path="/listings/new" element={<ProtectedRoute><CreateListing /></ProtectedRoute>} />
           <Route path="/listings/:id/edit" element={<ProtectedRoute><UpdateListing /></ProtectedRoute>} />
           <Route path="/reservations" element={<ProtectedRoute><Reservations /></ProtectedRoute>} />
+          {/* 404 catch-all */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </div>
