@@ -1,13 +1,29 @@
+/**
+ * User Controller
+ * Handles authentication and user profile operations.
+ *
+ * Routes:
+ *   POST /api/users/login     – login, returns JWT (public)
+ *   POST /api/users/register  – register new user account (public; role is always 'user')
+ *   GET  /api/users/me        – return current user profile (private)
+ */
+
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+// ─────────────────────────────────────────────────────────────
+// Helper – sign a JWT for the given user ID
+// ─────────────────────────────────────────────────────────────
 const generateToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
   });
 
+// ─────────────────────────────────────────────────────────────
+// @desc   Authenticate a user and return a JWT
 // @route  POST /api/users/login
 // @access Public
+// ─────────────────────────────────────────────────────────────
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -35,14 +51,23 @@ const loginUser = async (req, res) => {
   }
 };
 
-// @route  POST /api/users/register  (helper for seeding/testing accounts)
+// ─────────────────────────────────────────────────────────────
+// @desc   Register a new user account
+//         Role is always set to 'user' regardless of the request
+//         body — callers cannot self-assign privileged roles.
+// @route  POST /api/users/register
 // @access Public
+// ─────────────────────────────────────────────────────────────
 const registerUser = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
       return res.status(400).json({ message: 'Username, email and password are required' });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters' });
     }
 
     const existing = await User.findOne({ email });
@@ -50,7 +75,8 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'A user with that email already exists' });
     }
 
-    const user = await User.create({ username, email, password, role });
+    // Force role to 'user' — never accept role from request body
+    const user = await User.create({ username, email, password, role: 'user' });
 
     res.status(201).json({
       user: {
@@ -66,9 +92,13 @@ const registerUser = async (req, res) => {
   }
 };
 
+// ─────────────────────────────────────────────────────────────
+// @desc   Return the currently authenticated user's profile
 // @route  GET /api/users/me
 // @access Private
+// ─────────────────────────────────────────────────────────────
 const getMe = async (req, res) => {
+  // req.user is already populated by the protect middleware (password excluded)
   res.json(req.user);
 };
 
