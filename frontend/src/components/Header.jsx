@@ -35,7 +35,7 @@ export default function Header() {
         <svg viewBox="0 0 32 32" className="logo-icon" aria-hidden="true">
           <path d="M16 1C10.48 1 6 8.36 6 14c0 7.73 10 17 10 17s10-9.27 10-17C26 8.36 21.52 1 16 1zm0 18a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" fill="currentColor"/>
         </svg>
-        <span>airbnb</span>
+        <span>Genius airbnb</span>
       </Link>
 
       {/* Location search filter pill */}
