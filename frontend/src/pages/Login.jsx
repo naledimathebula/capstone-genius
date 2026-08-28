@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
-/**
- * Login page — validates email/password, calls AuthContext.login(),
- * and redirects to home on success. Shows inline field + server errors.
- */
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const errs = {};
@@ -27,20 +22,17 @@ export default function Login() {
     e.preventDefault();
     setServerError('');
     if (!validate()) return;
-    setLoading(true);
     try {
       await login(form.email, form.password);
       navigate('/');
     } catch (err) {
       setServerError(err.response?.data?.message || 'Login failed. Please try again.');
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <div className="login-page">
-      <form onSubmit={handleSubmit} className="login-form" noValidate>
+      <form onSubmit={handleSubmit} className="login-form">
         <h1>Log in</h1>
 
         <label>
@@ -48,11 +40,9 @@ export default function Login() {
           <input
             type="email"
             value={form.email}
-            autoComplete="email"
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            aria-invalid={!!errors.email}
           />
-          {errors.email && <span className="field-error" role="alert">{errors.email}</span>}
+          {errors.email && <span className="field-error">{errors.email}</span>}
         </label>
 
         <label>
@@ -60,23 +50,14 @@ export default function Login() {
           <input
             type="password"
             value={form.password}
-            autoComplete="current-password"
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            aria-invalid={!!errors.password}
           />
-          {errors.password && <span className="field-error" role="alert">{errors.password}</span>}
+          {errors.password && <span className="field-error">{errors.password}</span>}
         </label>
 
-        {serverError && <p className="form-error" role="alert">{serverError}</p>}
+        {serverError && <p className="form-error">{serverError}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in…' : 'Log in'}
-        </button>
-
-        <p className="login-footer-note">
-          Don't have an account?{' '}
-          <Link to="/" className="login-link">Explore as guest</Link>
-        </p>
+        <button type="submit">Log in</button>
       </form>
     </div>
   );

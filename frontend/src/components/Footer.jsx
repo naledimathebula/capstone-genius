@@ -21,9 +21,9 @@ export default function Footer() {
         ))}
       </div>
       <div className="footer-copyright">
-        <span>© {new Date().getFullYear()}Genius Airbnb Clone</span>
+        <span>© {new Date().getFullYear()} Airbnb Clone</span>
         <span className="footer-lang">English (US)</span>
-        <span className="footer-currency">R ZAR</span>
+        <span className="footer-currency">$ USD</span>
       </div>
     </footer>
   );

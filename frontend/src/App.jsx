@@ -5,8 +5,6 @@ import Home from './pages/Home.jsx';
 import Location from './pages/Location.jsx';
 import LocationDetails from './pages/LocationDetails.jsx';
 import Login from './pages/Login.jsx';
-import Reservations from './pages/Reservations.jsx';
-import NotFound from './pages/NotFound.jsx';
 
 function App() {
   return (
@@ -18,9 +16,6 @@ function App() {
           <Route path="/locations/:locationName" element={<Location />} />
           <Route path="/listings/:id" element={<LocationDetails />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/reservations" element={<Reservations />} />
-          {/* 404 catch-all */}
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
