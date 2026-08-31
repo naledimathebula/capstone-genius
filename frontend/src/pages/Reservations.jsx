@@ -68,7 +68,7 @@ export default function Reservations() {
 
       {!loading && !error && reservations.length === 0 && (
         <div className="empty-state">
-          <p>You don't have any reservations yet.</p>
+          <p>Sorry, you don't have any reservations yet.</p>
           <Link to="/" className="btn-primary-link">Start exploring</Link>
         </div>
       )}
