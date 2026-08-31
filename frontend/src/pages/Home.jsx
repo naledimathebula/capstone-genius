@@ -52,7 +52,7 @@ export default function Home() {
 
       <section className="shop-airbnb">
         <div className="shop-text">
-          <h2>Shop Airbnb gift cards</h2>
+          <h2>Shop Genius Airbnb gift cards</h2>
           <button className="btn-dark-pill">Shop now</button>
         </div>
         <div className="shop-image" />
