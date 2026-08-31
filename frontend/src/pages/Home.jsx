@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       <section className="future-getaways">
-        <h2>Inspiration for future getaways</h2>
+        <h2> Need Inspiration for future getaways?</h2>
         <div className="getaways-tabs">
           <span className="tab active">Local getaways</span>
           <span className="tab">International getaways</span>
