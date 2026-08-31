@@ -68,14 +68,14 @@ export default function LocationDetails() {
         <div className="details-left">
           <h2>{listing.title}</h2>
           <p>{listing.description}</p>
-          <h3>What this place offers</h3>
+          <h3>What this place offers?</h3>
           <ul>
             {listing.amenities?.map((a) => <li key={a}>{a}</li>)}
           </ul>
         </div>
 
         <aside className="cost-calculator">
-          <p><strong>${listing.price}</strong> / night</p>
+          <p><strong>R{listing.price}</strong> / night</p>
           <label>
             Check-in
             <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
