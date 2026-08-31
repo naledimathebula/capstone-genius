@@ -19,7 +19,7 @@ export default function Home() {
         />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1>Not sure where to go? Perfect.</h1>
+          <h1>Not sure where to go? Perfect.Welcome to Genius airbnb</h1>
           <button className="flexible-pill">I'm flexible</button>
         </div>
       </section>
