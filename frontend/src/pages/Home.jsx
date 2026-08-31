@@ -66,7 +66,7 @@ export default function Home() {
         />
         <div className="host-cta-overlay" />
         <div className="host-cta-text">
-          <h2>Questions about hosting?</h2>
+          <h2> Have questions about hosting?</h2>
           <Link to="/login" className="btn-dark-pill">Ask a host</Link>
         </div>
       </section>
