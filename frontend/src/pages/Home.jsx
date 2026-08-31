@@ -74,7 +74,7 @@ export default function Home() {
       <section className="future-getaways">
         <h2>Inspiration for future getaways</h2>
         <div className="getaways-tabs">
-          <span className="tab active">Domestic getaways</span>
+          <span className="tab active">Local getaways</span>
           <span className="tab">International getaways</span>
         </div>
       </section>
