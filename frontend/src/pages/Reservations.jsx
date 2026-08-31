@@ -113,7 +113,7 @@ export default function Reservations() {
 
                 {/* Cost + cancel */}
                 <div className="reservation-cost">
-                  <p className="reservation-total">${r.totalCost.toFixed(2)}</p>
+                  <p className="reservation-total">R{r.totalCost.toFixed(2)}</p>
                   <p className="reservation-status">{r.status}</p>
                   <button
                     className="btn-cancel"
