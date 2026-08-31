@@ -45,7 +45,7 @@ export default function Home() {
             <span>Things to do on your trip</span>
           </div>
           <div className="experience-card home">
-            <span>Things to do from home</span>
+            <span>Things to do from the comfort of your home</span>
           </div>
         </div>
       </section>
