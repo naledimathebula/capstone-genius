@@ -59,7 +59,7 @@ export default function Reservations() {
     <div className="reservations-page">
       <div className="reservations-header">
         <h1>Your Reservations</h1>
-        <Link to="/" className="btn-back">← Back to home</Link>
+        <Link to="/" className="btn-back">← Back to home Page</Link>
       </div>
 
       {loading && <p className="loading-text">Loading your reservations…</p>}
