@@ -62,7 +62,7 @@ export default function Reservations() {
         <Link to="/" className="btn-back">← Back to home Page</Link>
       </div>
 
-      {loading && <p className="loading-text">Loading your reservations…</p>}
+      {loading && <p className="loading-text">please be patient while loading your reservations…</p>}
       {error && <p className="form-error">{error}</p>}
       {successMsg && <p className="success-msg">{successMsg}</p>}
 
