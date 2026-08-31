@@ -97,7 +97,7 @@ export default function Reservations() {
                     {listing ? (
                       <Link to={`/listings/${listing._id}`}>{listing.title}</Link>
                     ) : (
-                      <span>Listing no longer available</span>
+                      <span>Sorry, the listing is no longer available</span>
                     )}
                   </h3>
                   {listing && (
