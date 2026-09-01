@@ -57,7 +57,7 @@ export default function Login() {
 
         {serverError && <p className="form-error">{serverError}</p>}
 
-        <button type="submit">Log in</button>
+        <button type="submit">Log in </button>
       </form>
     </div>
   );
