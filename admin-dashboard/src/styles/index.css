@@ -1,29 +1,30 @@
 /* ============================
-   Design tokens
+   Design tokens — blue primary (per Figma admin screens), red for destructive actions
    ============================ */
 :root {
-  --color-primary: #FF385C;
-  --color-primary-dark: #E31C5F;
+  --color-primary: #4F5FF0;
+  --color-primary-dark: #3B4CD9;
+  --color-danger: #E63954;
+  --color-danger-dark: #C92844;
+  --color-brand: #FF385C;
   --color-text: #222222;
   --color-text-secondary: #717171;
   --color-border: #DDDDDD;
   --color-border-light: #EBEBEB;
   --color-bg-alt: #F7F7F7;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-pill: 999px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.12);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; color: var(--color-text); background: #fff; -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { margin: 0 0 8px; font-weight: 600; letter-spacing: -0.01em; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; }
-ul { margin: 0; padding: 0; list-style: none; }
+body { margin: 0; color: var(--color-text); background: #fff; }
+h1 { font-size: 22px; margin: 0 0 16px; }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+input, textarea { padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 14px; font-family: inherit; }
+input:focus, textarea:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }
 
 /* ============================
    Header
@@ -31,74 +32,31 @@ ul { margin: 0; padding: 0; list-style: none; }
 .admin-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 40px;
+  gap: 32px;
+  padding: 16px 40px;
   border-bottom: 1px solid var(--color-border-light);
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.logo { color: var(--color-brand); font-weight: 800; font-size: 20px; text-decoration: none; }
+.logo span { color: var(--color-text-secondary); font-weight: 500; font-size: 13px; margin-left: 4px; }
+.admin-nav { display: flex; gap: 24px; flex: 1; }
+.admin-nav a { color: var(--color-text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+.admin-nav a:hover { color: var(--color-text); border-bottom-color: var(--color-primary); }
+
+.header-profile { display: flex; align-items: center; }
+.header-profile > a {
   color: var(--color-primary);
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-}
-.logo span {
-  background: var(--color-text);
-  color: #fff;
-  font-size: 11px;
+  text-decoration: none;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.admin-nav { display: flex; gap: 4px; }
-.admin-nav a {
-  padding: 8px 14px;
-  border-radius: var(--radius-pill);
-  color: var(--color-text-secondary);
   font-size: 14px;
-  font-weight: 500;
-  transition: background 0.15s, color 0.15s;
 }
-.admin-nav a:hover     { background: var(--color-bg-alt); color: var(--color-text); }
-.admin-nav a.active    { background: var(--color-bg-alt); color: var(--color-text); font-weight: 600; }
-
-/* Profile / dropdown */
 .profile-menu { position: relative; }
-.profile-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.profile-menu > button {
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
+  border-radius: 999px;
   background: #fff;
-  padding: 7px 14px 7px 8px;
+  padding: 8px 16px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--color-text);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.15s;
-}
-.profile-btn:hover { box-shadow: var(--shadow-md); }
-.profile-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .dropdown {
   position: absolute;
@@ -107,231 +65,103 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: #fff;
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-md);
-  padding: 6px;
+  padding: 8px;
   min-width: 190px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-md);
-  z-index: 200;
+  z-index: 10;
 }
 .dropdown a, .dropdown button {
   text-align: left;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  border-radius: 6px;
   border: none;
   background: none;
   font-size: 14px;
-  font-weight: 500;
+  text-decoration: none;
   color: var(--color-text);
 }
 .dropdown a:hover, .dropdown button:hover { background: var(--color-bg-alt); }
 
-/* ============================
-   Main layout
-   ============================ */
-main { padding: 32px 40px; max-width: 1200px; margin: 0 auto; }
+main { padding: 32px 40px; max-width: 1100px; margin: 0 auto; }
 
 /* ============================
    Buttons
    ============================ */
+.page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
 .btn-primary {
-  display: inline-block;
   background: var(--color-primary);
-  color: #fff;
+  color: white;
   border: none;
   padding: 10px 18px;
   border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s, opacity 0.15s;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  transition: background 0.15s ease;
 }
-.btn-primary:hover     { background: var(--color-primary-dark); }
-.btn-primary:disabled  { opacity: 0.6; cursor: not-allowed; }
+.btn-primary:hover { background: var(--color-primary-dark); }
 
-.btn-danger-sm {
-  padding: 6px 12px;
-  border: 1px solid #FCA5A5;
+.btn-delete {
+  background: var(--color-danger);
+  color: white;
+  border: none;
+  padding: 10px 18px;
   border-radius: var(--radius-sm);
-  background: #FFF1F2;
-  color: #B91C1C;
-  font-size: 13px;
-  font-weight: 500;
-  transition: background 0.15s;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.15s ease;
 }
-.btn-danger-sm:hover:not(:disabled) { background: #FEE2E2; }
-.btn-danger-sm:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-delete:hover { background: var(--color-danger-dark); }
+
+.btn-sm { padding: 6px 14px; font-size: 13px; }
 
 /* ============================
-   Page header
-   ============================ */
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-.page-header h1 { font-size: 24px; }
-
-/* ============================
-   Listings table
+   Table
    ============================ */
 .listings-table { width: 100%; border-collapse: collapse; }
 .listings-table th {
   text-align: left;
-  padding: 10px 12px;
-  border-bottom: 2px solid var(--color-border);
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  font-weight: 600;
+  padding: 12px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-border);
 }
-.listings-table td {
-  padding: 14px 12px;
-  border-bottom: 1px solid var(--color-border-light);
-  font-size: 14px;
-  vertical-align: middle;
-}
-.listings-table tr:last-child td { border-bottom: none; }
-.listings-table tr:hover td { background: var(--color-bg-alt); }
-.row-deleting td { opacity: 0.4; pointer-events: none; }
-
-.img-placeholder {
-  width: 80px;
-  height: 54px;
-  border-radius: var(--radius-sm);
-  background: var(--color-bg-alt);
-}
-
-.row-actions { display: flex; align-items: center; gap: 10px; }
-.action-edit {
-  padding: 6px 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text);
-  transition: background 0.15s;
-}
-.action-edit:hover { background: var(--color-bg-alt); }
-.action-delete {
-  padding: 6px 12px;
-  border: 1px solid #FCA5A5;
-  border-radius: var(--radius-sm);
-  background: none;
-  color: #B91C1C;
-  font-size: 13px;
-  font-weight: 500;
-  transition: background 0.15s;
-}
-.action-delete:hover:not(:disabled) { background: #FEE2E2; }
-.action-delete:disabled { opacity: 0.5; cursor: not-allowed; }
+.listings-table td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--color-border-light); font-size: 14px; }
+.listings-table img { border-radius: 6px; object-fit: cover; aspect-ratio: 4/3; }
+.row-actions { display: flex; gap: 8px; }
 
 /* ============================
    Forms
    ============================ */
-.login-page { display: flex; justify-content: center; padding: 64px 20px; }
-.login-form {
-  width: 100%;
-  max-width: 400px;
+.login-form, .listing-form {
+  max-width: 480px;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: var(--color-bg-alt);
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border-light);
-}
-.login-form h1 { font-size: 22px; text-align: center; margin-bottom: 4px; }
-.login-hint { font-size: 13px; color: var(--color-text-secondary); text-align: center; margin: 0 0 8px; }
-
-.listing-form { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-.form-row { display: flex; gap: 14px; }
-.form-row label { flex: 1; }
-
-label { display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 500; }
-input, textarea, select {
-  padding: 10px 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-family: inherit;
   background: #fff;
-  transition: border-color 0.15s;
+  border: 1px solid var(--color-border-light);
+  padding: 28px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: var(--color-text);
-}
-textarea { resize: vertical; min-height: 80px; }
+.login-form h1 { text-align: center; }
+.form-row { display: flex; gap: 12px; }
+.form-row label { flex: 1; }
+.field-error, .form-error, .error { color: var(--color-danger); font-size: 13px; }
 
-.field-error { color: var(--color-primary); font-size: 13px; }
-.form-error {
-  color: #9F1239;
-  background: #FFF1F2;
-  border: 1px solid #FECDD3;
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  font-size: 13px;
-}
+.listing-page h1 { margin-bottom: 4px; }
+.listing-form { margin-left: 0; }
 
 /* ============================
-   Status / feedback
+   Reservations
    ============================ */
-.error { color: var(--color-primary); font-size: 14px; }
-.loading-text { color: var(--color-text-secondary); font-size: 15px; }
-.empty-note { color: var(--color-text-secondary); font-size: 15px; padding: 24px 0; }
-.empty-note a { color: var(--color-primary); text-decoration: underline; }
-
-.success-msg {
-  background: #ECFDF5;
-  border: 1px solid #A7F3D0;
-  color: #065F46;
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.status-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
-  background: #ECFDF5;
-  color: #065F46;
-}
-
-/* ============================
-   Reservations page (admin)
-   ============================ */
-.reservations-page h1 { font-size: 24px; margin-bottom: 24px; }
-
-/* ============================
-   Not Found page
-   ============================ */
-.not-found-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
-  text-align: center;
-}
-.not-found-page h1 { font-size: 64px; color: var(--color-primary); }
-.not-found-page p  { color: var(--color-text-secondary); font-size: 16px; margin-bottom: 24px; }
-
-/* ============================
-   Responsive
-   ============================ */
-@media (max-width: 768px) {
-  .admin-header { padding: 12px 20px; }
-  main { padding: 20px; }
-  .form-row { flex-direction: column; }
-  .listings-table th:nth-child(3),
-  .listings-table td:nth-child(3) { display: none; } /* hide Location on mobile */
-}
+.reservations-page h1 { margin-bottom: 20px; }

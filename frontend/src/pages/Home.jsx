@@ -39,7 +39,7 @@ export default function Home() {
       </section>
 
       <section className="experiences-section">
-        <h2>Discover Genius Airbnb Experiences</h2>
+        <h2>Discover The Genius Airbnb Experiences</h2>
         <div className="experiences-grid">
           <div className="experience-card canyon">
             <span>Things to do on your trip</span>
