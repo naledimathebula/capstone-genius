@@ -17,6 +17,7 @@
 require('dotenv').config();
 const express    = require('express');
 const cors       = require('cors');
+
 const helmet     = require('helmet');
 const rateLimit  = require('express-rate-limit');
 const connectDB  = require('./config/db');
@@ -53,12 +54,9 @@ const authLimiter = rateLimit({
 });
 
 // ── CORS ──────────────────────────────────────────────────────
-app.use(
-  cors({
-    origin: [process.env.CLIENT_URL, process.env.ADMIN_URL].filter(Boolean),
-    credentials: true,
-  })
-);
+app.use(cors({
+    origin: "http://localhost:5175"
+}));
 
 // ── Body parsers ──────────────────────────────────────────────
 app.use(express.json());

@@ -64,7 +64,7 @@ export default function Footer() {
       <div className="footer-copyright">
         <span>© {new Date().getFullYear()} Genius Airbnb Clone. All rights reserved.</span>
         <span className="footer-lang">English (US)</span>
-        <span className="footer-currency">$ USD</span>
+        <span className="footer-currency">R ZAR</span>
       </div>
     </footer>
   );

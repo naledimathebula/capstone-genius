@@ -25,20 +25,20 @@ const GETAWAY_TABS = ['Local getaways', 'International getaways'];
 
 const GETAWAY_CONTENT = {
   'Local getaways': [
-    { name: 'Johannesburg',  nights: '4 nights',  price: '$85/night' },
-    { name: 'Durban',        nights: '3 nights',  price: '$95/night' },
-    { name: 'Pretoria',      nights: '2 nights',  price: '$75/night' },
-    { name: 'Stellenbosch',  nights: '5 nights',  price: '$110/night' },
-    { name: 'Knysna',        nights: '7 nights',  price: '$130/night' },
-    { name: 'Hermanus',      nights: '4 nights',  price: '$120/night' },
+    { name: 'Johannesburg',  nights: '4 nights',  price: 'R85/night' },
+    { name: 'Durban',        nights: '3 nights',  price: 'R95/night' },
+    { name: 'Pretoria',      nights: '2 nights',  price: 'R75/night' },
+    { name: 'Stellenbosch',  nights: '5 nights',  price: 'R110/night' },
+    { name: 'Knysna',        nights: '7 nights',  price: 'R130/night' },
+    { name: 'Hermanus',      nights: '4 nights',  price: 'R120/night' },
   ],
   'International getaways': [
-    { name: 'Cape Town',     nights: '5 nights',  price: '$210/night' },
-    { name: 'Paris',         nights: '4 nights',  price: '$195/night' },
-    { name: 'New York',      nights: '3 nights',  price: '$320/night' },
-    { name: 'Tokyo',         nights: '6 nights',  price: '$145/night' },
-    { name: 'Dubai',         nights: '4 nights',  price: '$850/night' },
-    { name: 'London',        nights: '5 nights',  price: '$230/night' },
+    { name: 'Cape Town',     nights: '5 nights',  price: 'R210/night' },
+    { name: 'Paris',         nights: '4 nights',  price: 'R195/night' },
+    { name: 'New York',      nights: '3 nights',  price: 'R320/night' },
+    { name: 'Tokyo',         nights: '6 nights',  price: 'R145/night' },
+    { name: 'Dubai',         nights: '4 nights',  price: 'R850/night' },
+    { name: 'London',        nights: '5 nights',  price: 'R230/night' },
   ],
 };
 
