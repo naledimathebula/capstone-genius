@@ -54,14 +54,12 @@ const authLimiter = rateLimit({
 });
 
 // ── CORS ──────────────────────────────────────────────────────
-// CLIENT_URL and ADMIN_URL are set as environment variables on the
-// deployment platform (Render). In development they fall back to localhost.
-// We also allow all origins in development when neither var is set, so
-// that local testing still works without touching this file.
+// In production: CLIENT_URL and ADMIN_URL must be set as Render env vars.
+// If neither is set (e.g. during initial deploy), we allow all origins so
+// the service doesn't silently block all requests while you configure it.
 const allowedOrigins = [
   process.env.CLIENT_URL,
   process.env.ADMIN_URL,
-  // Local dev fallbacks
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:5175',
@@ -70,10 +68,13 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, Postman, etc.)
+      // No origin = Postman / curl / server-to-server — always allow
       if (!origin) return callback(null, true);
+      // If no production origins are configured yet, allow everything
+      if (!process.env.CLIENT_URL && !process.env.ADMIN_URL) return callback(null, true);
+      // Otherwise check the allowlist
       if (allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error(`CORS: origin ${origin} not allowed`));
+      return callback(new Error(`CORS policy: origin ${origin} is not allowed`));
     },
     credentials: true,
   })
