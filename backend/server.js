@@ -54,9 +54,30 @@ const authLimiter = rateLimit({
 });
 
 // ── CORS ──────────────────────────────────────────────────────
-app.use(cors({
-    origin: "http://localhost:5175"
-}));
+// CLIENT_URL and ADMIN_URL are set as environment variables on the
+// deployment platform (Render). In development they fall back to localhost.
+// We also allow all origins in development when neither var is set, so
+// that local testing still works without touching this file.
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  process.env.ADMIN_URL,
+  // Local dev fallbacks
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, Postman, etc.)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error(`CORS: origin ${origin} not allowed`));
+    },
+    credentials: true,
+  })
+);
 
 // ── Body parsers ──────────────────────────────────────────────
 app.use(express.json());
