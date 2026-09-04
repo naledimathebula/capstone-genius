@@ -30,7 +30,7 @@ export default function Header() {
     <header className="admin-header">
       {/* Logo */}
       <Link to="/" className="logo" aria-label="Admin home">
-        airbnb <span>admin</span>
+        Genius airbnb <span>admin</span>
       </Link>
 
       {/* Navigation links — only rendered when a session is active */}
